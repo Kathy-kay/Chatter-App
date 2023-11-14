@@ -1,4 +1,4 @@
- import { ISignUp } from "./types"
+ import { ILogin, ISignUp } from "./types"
  import * as yup from "yup"
 import {yupResolver} from "@hookform/resolvers/yup"
 
@@ -8,6 +8,7 @@ export const signupDefaultValues:ISignUp = {
     email: "",
     password: ""
 }
+
 
  export const signupSchema = yup.object().shape({
     fullName: yup.string()
@@ -25,7 +26,10 @@ export const signupDefaultValues:ISignUp = {
  })
  export const signupResolver =  yupResolver(signupSchema);
 
-
+ export const loginDefaultValues: ILogin = {
+    username: "",
+    password: ""
+}
  
 export const loginSchema = yup.object().shape({
     username: yup.string().min(6, "username must be atleast 6 characters").required("Username is required"),
@@ -35,5 +39,5 @@ export const loginSchema = yup.object().shape({
         .required("password s required")
 })
 
-
+export const loginResolver = yupResolver(loginSchema)
 

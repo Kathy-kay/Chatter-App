@@ -7,7 +7,7 @@ export type ISignUp = {
 }
 
 export type ILogin = {
-    email: string
+    username: string
     password: string
 
 }
