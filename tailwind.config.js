@@ -10,6 +10,9 @@ module.exports = {
       colors: {
         "auth-800": "#06283d",
         "auth-500": "#163855",
+        "coral-red": "#fe5000",
+        "primary-blue": "#001233",
+        biege: "#efe0ca",
       },
     },
   },
