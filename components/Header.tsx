@@ -1,8 +1,11 @@
+"use client"
 import React from 'react'
 import hero from  "@/public/hero.png"
 import Image from "next/image"
-import Link from 'next/link'
+
+import { useRouter } from 'next/navigation'
 const Header = () => {
+  const router = useRouter()
   return (
     <div className="relative w-full min-h-screen"> 
         <Image src={hero} 
@@ -16,9 +19,10 @@ const Header = () => {
           </h1>
           <p className='text-[16px] sm:text-xl text-biege my-7 sm:mt-5 '>Unleash the Power of words, Connect with 
           Like-minded Readers <br/> and Writers</p>
-          <Link href={"/sign-in"}
+          <button 
+          onClick={() => router.push("/sign-in")}
           className="bg-coral-red py-2 px-4 text-white rounded-md"
-          >Get Started</Link>
+          >Get Started</button>
         </div>
     </div>
   ) 
