@@ -1,7 +1,7 @@
 import Navbar from '@/components/Navbar'
 import './globals.css'
 import type { Metadata } from 'next'
-
+import {NextAuthProvider} from '@/components/Providers'
 
 export const metadata: Metadata = {
   title: 'Chatter',
@@ -16,10 +16,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body suppressHydrationWarning={true}>
-        <div className="relative w-full min-h-screen">
-          <Navbar />
-          {children}
-        </div>
+        <NextAuthProvider>
+          <div className="relative w-full min-h-screen">
+            <Navbar />
+            {children}
+          </div>
+        </NextAuthProvider>
       </body>
     </html>
   )

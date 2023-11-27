@@ -1,9 +1,14 @@
 import React from 'react'
-import signup from "@/public/signup.png"
-import Image from 'next/image'
 import Login from '@/components/Login'
+import {getServerSession} from "next-auth/next"
+import {authOptions} from "../api/auth/[...nextauth]/route"
+import {redirect} from "next/navigation"
 
-const page = () => {
+const page = async () => {
+  const session = await getServerSession(authOptions);
+  if(session){
+    redirect("/")
+  }
   return (
     <main className=' pt-48'>
             <Login />
