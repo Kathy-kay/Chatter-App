@@ -3,7 +3,7 @@ import React from 'react'
 
 const CategoryList = () => {
   return (
-    <div className='flex gap-5 mt-10 sm:ml-20 items-center text-white'>
+    <div className='flex gap-5 mt-10 sm:ml-20 items-center text-white font-poppin'>
       <Link href={"/tag"}
       className='bg-auth-500 px-3 p-1 rounded-sm'
       >Programming</Link>

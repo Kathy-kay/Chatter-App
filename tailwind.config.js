@@ -14,6 +14,10 @@ module.exports = {
         "primary-blue": "#001233",
         biege: "#efe0ca",
       },
+      fontFamily: {
+        poppin: ["--font-poppins"],
+        montserrat: ["--font-montserrat"],
+      },
     },
   },
   plugins: [],

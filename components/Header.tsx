@@ -13,11 +13,11 @@ const Header = () => {
         className='object-cover object-center min-h-screen w-full ' 
         />
         <div className="absolute w-full h-full top-0 bg-black opacity-50 "></div>
-        <div className="absolute top-[40%] left-20 max-sm:left-8 max-sm:right-8  max-w-[1000px]">
-          <h1 className='text-5xl text-white leading-tight font-bold max-sm:text-3xl'>Welcome to Chatter: A Haven for  
+        <div className="absolute top-[40%] left-5 md:left-20 max-sm:right-8  max-w-[1000px]">
+          <h1 className='md:text-5xl text-xl text-white md:leading-tight leading-normal font-montserrat font-bold max-sm:text-3xl'>Welcome to Chatter: A Haven for  
           Text-Based Content
           </h1>
-          <p className='text-[16px] sm:text-xl text-biege my-7 sm:mt-5 '>Unleash the Power of words, Connect with 
+          <p className='text-[16px] sm:text-xl text-biege my-7 sm:mt-5 font-poppin'>Unleash the Power of words, Connect with 
           Like-minded Readers <br/> and Writers</p>
           <button 
           onClick={() => router.push("/sign-in")}
