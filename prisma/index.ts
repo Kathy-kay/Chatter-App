@@ -1,18 +1,15 @@
-import { PrismaClient } from "@prisma/client";
+import {PrismaClient } from "@prisma/client"
 
+const prismaClientSingleton = () => {
+  return new PrismaClient()
+}
 
+declare global {
+  var prisma: undefined | ReturnType<typeof prismaClientSingleton>
+}
 
-const getPrisma = (): PrismaClient => {
-    
-  const prismaClient = new PrismaClient();
+const prisma = globalThis.prisma ?? prismaClientSingleton()
 
-  // Close the Prisma client when the Node.js process exits
-  process.on("beforeExit", () => {
-    prismaClient.$disconnect();
-  });
+export default prisma
 
-  return prismaClient;
-};
-const prisma = getPrisma()
-
-export default prisma;
+if (process.env.NODE_ENV !== 'production') globalThis.prisma = prisma

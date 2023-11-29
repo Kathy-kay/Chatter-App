@@ -17,13 +17,14 @@ const toggle = () =>{
   setIsOpen(!isOpen)
 }
 
+
 // const pathname = usePathname()
 //  const pagesWithoutNavbar = ['/login'];
 //  const shouldHideNavbar = pagesWithoutNavbar.includes(pathname)
     
   return (
       <header className="fixed bg-auth-800 left-0 right-0 z-10">
-          <nav className='flex items-center justify-between py-6 mx-auto container  max-md:px-6 ' >
+          <nav className='flex items-center justify-between py-6 mx-auto px-6 md:px-20 ' >
             <Link href='/'>
               <h1 className='text-white text-4xl max-sm:text-2xl font-bold font-montserrat'>
                 CHATTER</h1>
@@ -38,12 +39,16 @@ const toggle = () =>{
                       <MdCreate />
                     </span> Write</Link>
                   {isOpen && (
-                    <div className="absolute flex flex-col items-center justify-start bg-auth-800 pl-6 pr-10 right-6 top-20 py-6 rounded-md font-poppin gap-6 ">
+                    <div className="absolute flex flex-col text-left bg-auth-800 px-10 right-16 top-20 py-6 rounded-md font-poppin gap-6 ">
                     <h3 className='text-white text-lg '>{session?.user?.name}</h3>
-                    <Link href={"/create-post"} className="text-white text-lg flex items-center gap-2">
+                    <Link href={"/create-post"} 
+                    onClick={() => setIsOpen(false)} 
+                    className="text-white text-lg flex items-center gap-2">
                       
                       Create-Post</Link>
-                    <Link href={"/dashboard"} className="text-white text-lg leading-tight">Dashboard</Link>
+                    <Link href={"/dashboard"} 
+                    onClick={() => setIsOpen(false)}
+                    className="text-white text-lg leading-tight">Dashboard</Link>
                     <button
                       onClick={() => signOut()}
                       className="text-coral-red flex gap-2 items-center"
