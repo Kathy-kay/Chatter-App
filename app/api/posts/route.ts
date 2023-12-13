@@ -25,8 +25,23 @@ export const POST = async (req: Request) => {
     console.log("post created")
     return NextResponse.json({message: newPost}, {status: 200});
   } catch (error) {
-    return NextResponse.json({message: "could not create post"}, {status: 501})
+    return NextResponse.json({message: "could not create post"}, {status: 501} )
   }
 }
 
+export async function GET(){
+  try{
+    const posts = await prisma.post.findMany({
+      include: {author: {select: {name: true}}},
+      orderBy: {
+        createdAt: "desc"
+      }
+    })
+    return NextResponse.json({message: posts}, {status: 200})
+  }
+  catch(error){
+    console.log(error)
+     return NextResponse.json({message: "some error occured"}, {status: 500})
+  }
+}
 
