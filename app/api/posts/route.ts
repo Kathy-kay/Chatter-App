@@ -1,11 +1,19 @@
 import { NextResponse } from 'next/server'
 import prisma from "@/prisma/index"
+import { getServerSession } from 'next-auth/next'
+import { authOptions } from '../auth/[...nextauth]/route'
 
 
 export const POST = async (req: Request) => {
 
-    const {title, content, imageUrl, category, publicId} = await req.json()
-    const authorEmail = "john@gmail.com"
+  const session = getServerSession(authOptions)
+
+  if(!session){
+    return NextResponse.json({message: "Not authenticated"}, {status: 401})
+  }
+
+    const {title, content, imageUrl, selectedCategory, publicId} = await req.json()
+    const authorEmail = "adgunkafy27@gmail.com"
 
     if (!title || !content){
         return NextResponse.json({message: "tItle and content are required"}, {status: 500})
@@ -18,7 +26,7 @@ export const POST = async (req: Request) => {
             content,
             imageUrl,
             publicId,
-            catName: category,
+            catName: selectedCategory,
             authorEmail
         },
     });

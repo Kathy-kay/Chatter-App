@@ -10,6 +10,7 @@ const Header = () => {
     <div className="relative w-full min-h-screen"> 
         <Image src={hero} 
         alt="hero page"
+        priority
         className='object-cover object-center min-h-screen w-full ' 
         />
         <div className="absolute w-full h-full top-0 bg-black opacity-50 "></div>

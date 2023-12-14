@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server"
 import prisma from "@/prisma/index"
+import { getServerSession } from "next-auth/next"
+import { authOptions } from "../../auth/[...nextauth]/route"
 
 
 export async function GET( req: Request, {params}: {params: {id: string}}) {
@@ -15,7 +17,14 @@ export async function GET( req: Request, {params}: {params: {id: string}}) {
 
 
 export async function PUT(req: Request, {params}: {params: {id: string}}) {
-    const {title, content, imageUrl, category, publicId} = await req.json();
+
+    const session = getServerSession(authOptions);
+
+    if(!session){
+        return NextResponse.json({message: "Not authenticated"}, {status: 401})
+    }
+
+    const {title, content, imageUrl, selectedCategory, publicId} = await req.json();
     try {
         const id = params.id;
         const post = await prisma.post.update({
@@ -24,7 +33,7 @@ export async function PUT(req: Request, {params}: {params: {id: string}}) {
                 title,
                 content,
                 imageUrl,
-                catName: category,
+                catName: selectedCategory,
                 publicId
             }
         })
@@ -35,7 +44,13 @@ export async function PUT(req: Request, {params}: {params: {id: string}}) {
 }
 
 export async function DELETE(req: Request,  {params} : {params: {id: string}}) {
-    try {
+    try {           
+        const session = getServerSession(authOptions);
+
+    if(!session){
+        return NextResponse.json({message: "Not authenticated"}, {status: 401})
+    }
+
         const id = params.id
         const post = await prisma.post.delete({
             where: {id}
